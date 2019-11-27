@@ -16,6 +16,8 @@ x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
 %data = 'TMRM_Oligo';
 %data = 'TMRM_AA';
 data = 'TMRM_Rot';
+x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
+%data = 'NADH_Rot';
 
 % Position = figure dimensions for publication
 figure('Position', [100 100 120 200])
@@ -29,7 +31,7 @@ colours = ('rk');   % Plot expt data in red (changed in Figure to grey), sims in
 
 boxplot(y(:,6),y(:,7),'Color',colours,'Symbol','+')
 hold on
-markersize = 6;
+markersize = 5;
 % Plot scatter points next to boxplot
 disp('X')
 
@@ -44,7 +46,7 @@ xticklabels({'CNs','Sims'})
 %Add ylabel and y axis limits
 if strcmp(data, 'TMRM_Rot')
     ylabel('\Delta\Psi_m response to Rot. (mV)')
-    ylim([90 145])
+%     ylim([90 145])
 elseif strcmp(data, 'TMRM_AA')
     ylabel('\Delta\Psi_m response to AA (mV)')
     ylim([90 145])
@@ -55,13 +57,14 @@ elseif strcmp(data, 'TMRM_Oligo')
     ylabel('\Delta\Psi_m response to Oligo. (mV)')
     ylim([120 180])
 end
-% 
-% % Set x axis limits
-% xlim([0.5 2.5])
-% 
-% % Set x-axis tick labels
-% xticklabels({'CNs','Sims'})
-% disp('X')
+
+%ylim([120 180])
+% Set x axis limits
+xlim([0.5 2.5])
+
+% Set x-axis tick labels
+xticklabels({'CNs','Sims'})
+
 % Remove box around plot
 box off
 disp(data)
