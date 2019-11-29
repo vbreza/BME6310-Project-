@@ -89,13 +89,13 @@ fprintf('\nRunning expt %i', expt)
 % Set parameters to 1 for 100% condition, and to <1 to
 % simulate impairment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-v_xpar7 = 1;%0.5;%0.42;%    % x_DH impairment 
-v_xpar9 = 1;%2e-1;%9e-2;%4.5e-2;%      % x_C1  
-v_xpar10 = 1;%1.2e-1;%7.2e-2;%5.2e-2;%     % x_C3
-v_xpar13 = 1;%6e-3;%3.2e-3%2.2e-3;%     % x_C4 impairment
-v_xpar15 = 1;%1e-4;%6e-5%4.2e-5;%    % x_F1 impairment
+v_xpar7 = 0.5; %1;%0.5;%0.42;%    % x_DH impairment 
+v_xpar9 = 9e-2;%1;%2e-1;%9e-2;%4.5e-2;%      % x_C1  
+v_xpar10 = 7.2e-2;%1;%1.2e-1;%7.2e-2;%5.2e-2;%     % x_C3
+v_xpar13 = 3.2e-3;%1;%6e-3;%3.2e-3%2.2e-3;%     % x_C4 impairment
+v_xpar15 = 6e-5;%1;%1e-4;%6e-5%4.2e-5;%    % x_F1 impairment
 v_xpar21 = 1;%1.5;%2.0;%     % x_Hle  
-v_otherpar4 = 1;%0.3;%0.82;%  % K_ADTP_dyn impairment
+v_otherpar4 = 0.3;%1;%0.3;%0.82;%  % K_ADTP_dyn impairment
 v_otherpar6 = 1; % K_ADTP_cons (redundant)
 
 if v_xpar7 ~= 1, fprintf('Impairing x_DH [xpar(7)=%0.2i]\n',v_xpar7), end
