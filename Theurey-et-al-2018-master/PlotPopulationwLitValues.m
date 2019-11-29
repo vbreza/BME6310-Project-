@@ -125,7 +125,7 @@ ylim([axesMin axesMax])
 xlim([1.05 1.25])
 
 % Apply legend
-%legend('Simulations', 'Literature range')
+  legend('Simulations', 'Literature range', 'Location', 'south')
 
 % Remove x-axis ticks
 set(gca,'XTick',[])
