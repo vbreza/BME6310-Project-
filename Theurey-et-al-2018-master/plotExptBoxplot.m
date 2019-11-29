@@ -9,12 +9,16 @@ function plotExptBoxplot
 % x = data (col 1), group (col 2) and scatter (col 3)
 % Simulations generated using Beard_NC_simulatePopulation.m
 
+filename = 'Pre-generated data (Fig 1C,2F).xlsx';
+x = xlsread(filename);
+
 % Specify data variable
 %data = 'TMRM_Oligo';
 %data = 'TMRM_AA';
-%data = 'TMRM_Rot';
-x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
-data = 'NADH_Rot';   
+data = 'TMRM_Rot';
+%data = 'NADH_Rot';   
+
+
 
 % Position = figure dimensions for publication
 figure('Position', [100 100 120 130])
@@ -31,7 +35,7 @@ hold on
 markersize = 2;
 % Plot scatter points next to boxplot
 for i = 1:size(colours,2)
-    scatter(y(y(:,2)==i,3),y(y(:,2)==i,1),markersize,'filled',colours(i))
+    scatter(y(y(:,6)==i,3),y(y(:,6)==i,2),markersize,'filled',colours(i))
 end
 
 % Add ylabel and y axis limits
@@ -43,10 +47,10 @@ elseif strcmp(data, 'TMRM_AA')
     ylim([90 145])
 elseif strcmp(data, 'NADH_Rot')
     ylabel('NAD(P)H response to Rot. (FC)')
-    %ylim([90 145])
+    ylim([1.0 3.0])
 elseif strcmp(data, 'TMRM_Oligo')
     ylabel('\Delta\Psi_m response to Oligo. (mV)')
-    ylim([90 170])
+    ylim([90 180])
 end
 
 % Set x axis limits
