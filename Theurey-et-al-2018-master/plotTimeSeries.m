@@ -39,7 +39,7 @@ if plotStateVar == 1
         plot(tt,meanStateVar(:,plotIndex),'k','LineWidth',2);
       end
       title(statevar_legend(plotIndex))
-      %axis([-inf plot_time -inf inf])
+%       axis([-inf plot_time -inf inf])
     end
     %Plot deltaPsim 
     figure, hold on
@@ -65,7 +65,7 @@ if plotStateVarFC == 1
         plot(tt,meanStateVarFC(:,plotIndex),'k','LineWidth',2);
       end
       title(statevar_legend(plotIndex))
-      %axis([-inf plot_time -inf inf])
+%       axis([-inf plot_time -inf inf])
     end
     %Plot deltaPsim (stateVar19)
     temp = [4 19];  
@@ -76,7 +76,7 @@ if plotStateVarFC == 1
       else
         plot(tt,meanStateVarFC(:,temp(i)),'k','LineWidth',2);
       end
-      axis([0 65 -inf inf])
+%       axis([0 65 -inf inf])
       xlabel('Time (min)')
       ylabel(statevar_legend(temp(i)))
     end
@@ -95,7 +95,7 @@ if plotOutput == 1
       end
       title(output_legend(plotIndex))
       if j == 2 || j == 3 || j ==4
-        axis([-inf inf 0 1e-3])
+%         axis([-inf inf 0 1e-3])
       end
     end
        
@@ -110,7 +110,7 @@ if plotOutput == 1
     else  % Plot mean trace if multiple simulations were run    
     plot(tt(4:stepsize*600:end),meanOutput(4:stepsize*600:end,4),'k','LineWidth',2);
     end
-    axis([0 80 0 10e-4])
+    axis([0 60 0 10e-4])
     xlabel('Time (min)')
     ylabel('J_C4: OCR (mol O_2/s/l of mito)')
     
@@ -122,7 +122,7 @@ if plotOutput == 1
     plot(tt(4:stepsize*100:end),meanOutput(4:stepsize*100:end,27),'k','LineWidth',2);
     end
     xlabel('Time (min)')
-    ylabel('Output27 (J_ATPcytoProd): mol ATP/s/l of mito')
+%     ylabel('Output27 (J_ATPcytoProd): mol ATP/s/l of mito')
     
     % Plot J_F1 (mitochondrial ATP production?)
     subplot(3,3,7), hold on
@@ -135,7 +135,7 @@ if plotOutput == 1
     plot(tt(4:stepsize*100:end),meanOutput(4:stepsize*100:end,5),'k','LineWidth',2);
     end
     xlabel('Time (min)')
-    ylabel('J_F1: mol ATP/s/l of mito')
+%     ylabel('J_F1: mol ATP/s/l of mito')
            
     % Convert simulations to mol X/min/ug protein to align with experimental data
     dim = 1;
@@ -152,7 +152,7 @@ if plotOutput == 1
         meanOutput4Conv = meanOutput(:,4)*convert;
         plot(tt(4:stepsize*600:end),meanOutput4Conv(4:stepsize*600:end),'k','LineWidth',2);
     end
-    axis([0 80 0 20e-12])
+    axis([0 60 0 20e-12])
     xlabel('Time (min)')
     ylabel('J_C4: OCR (mol O_2/min/ug protein)')
     
@@ -167,8 +167,8 @@ if plotOutput == 1
         plot(tt(4:stepsize*100:end),meanOutput27Conv(4:stepsize*100:end),'k','LineWidth',2);
     end
     xlabel('Time (min)')
-    ylabel('Output27 (J_ATPcytoprod): mol ATP/min/ug protein')
-    
+%     ylabel('Output27 (J_ATPcytoprod): mol ATP/min/ug protein')
+
     subplot(3,3,8), hold on
     for i = 1:numSims
         Output5Conv = OutputAll(:,5,i)*convert;
@@ -181,7 +181,7 @@ if plotOutput == 1
         plot(tt(4:stepsize*100:end),meanOutput5Conv(4:stepsize*100:end),'k','LineWidth',2);
     end
     xlabel('Time (min)')
-    ylabel('J_F1: mol ATP/min/ug protein')
+%     ylabel('J_F1: mol ATP/min/ug protein')
     
     % Plot proportion of cyto ATP production
     subplot(3,3,6), hold on
@@ -193,9 +193,9 @@ if plotOutput == 1
         temp = nanmean(prop_cyto,3);
         plot(tt(4:stepsize*100:end), temp((4:stepsize*100:end)),'k','LineWidth',2);
     end
-    axis([-inf inf 0 100])
+%     axis([-inf inf 0 100])
     xlabel('Time (min)')
-    ylabel('Cytosolic ATP production (%)')
+%     ylabel('Cytosolic ATP production (%)')
     
 end
 
@@ -213,7 +213,7 @@ if plotOutputFC == 1
         plot(tt,meanOutputFC(:,plotIndex),'k','LineWidth',2);
       end
       title(output_legend(plotIndex))
-      %axis([-inf plot_time -inf inf])
+      axis([-inf plot_time -inf inf])
     end
     %Plot OCR, sampled at 6 minute intervals (stepsize = 0.1)
     figure, hold on
