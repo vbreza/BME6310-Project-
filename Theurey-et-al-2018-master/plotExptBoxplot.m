@@ -10,7 +10,8 @@ function plotExptBoxplot
 % Simulations generated using Beard_NC_simulatePopulation.m
 
 % Specify data variable - uncomment the data you want to plot
-x_all = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
+filename = 'Pre-generated data (Fig 1C,2F).xlsx';
+x_all = xlsread(filename);
 
 % tmrm_oligo 
 %x = x_all(1:160,1:3);
@@ -25,8 +26,10 @@ x_all = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
 %data = 'TMRM_Rot';
 
 % nadh_rot 
-x = x_all(1:138,15:17);
-data = 'NADH_Rot';   
+%x = x_all(1:138,15:17);
+%data = 'NADH_Rot';   
+
+
 
 % Position = figure dimensions for publication
 figure('Position', [100 100 120 130])
@@ -43,7 +46,7 @@ hold on
 markersize = 2;
 % Plot scatter points next to boxplot
 for i = 1:size(colours,2)
-    scatter(y(y(:,2)==i,3),y(y(:,2)==i,1),markersize,'filled',colours(i))
+    scatter(y(y(:,6)==i,3),y(y(:,6)==i,2),markersize,'filled',colours(i))
 end
 
 % Add ylabel and y axis limits
