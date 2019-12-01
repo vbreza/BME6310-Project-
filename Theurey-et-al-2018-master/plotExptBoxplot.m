@@ -9,11 +9,23 @@ function plotExptBoxplot
 % x = data (col 1), group (col 2) and scatter (col 3)
 % Simulations generated using Beard_NC_simulatePopulation.m
 
-% Specify data variable
+% Specify data variable - uncomment the data you want to plot
+x_all = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
+
+% tmrm_oligo 
+%x = x_all(1:160,1:3);
 %data = 'TMRM_Oligo';
+
+% tmrm_aa 
+%x = x_all(1:149,11:13);
 %data = 'TMRM_AA';
+
+% tmrm_rot 
+%x = x_all(1:175,6:8);
 %data = 'TMRM_Rot';
-x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
+
+% nadh_rot 
+x = x_all(1:138,15:17);
 data = 'NADH_Rot';   
 
 % Position = figure dimensions for publication
@@ -43,10 +55,10 @@ elseif strcmp(data, 'TMRM_AA')
     ylim([90 145])
 elseif strcmp(data, 'NADH_Rot')
     ylabel('NAD(P)H response to Rot. (FC)')
-    %ylim([90 145])
+    ylim([1 3])
 elseif strcmp(data, 'TMRM_Oligo')
     ylabel('\Delta\Psi_m response to Oligo. (mV)')
-    ylim([90 170])
+    ylim([120 180])
 end
 
 % Set x axis limits
