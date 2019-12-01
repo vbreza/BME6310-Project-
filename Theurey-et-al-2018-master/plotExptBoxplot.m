@@ -14,8 +14,8 @@ filename = 'Pre-generated data (Fig 1C,2F).xlsx';
 x_all = xlsread(filename);
 
 % tmrm_oligo 
-%x = x_all(1:160,1:3);
-%data = 'TMRM_Oligo';
+x = x_all(1:160,1:3);
+data = 'TMRM_Oligo';
 
 % tmrm_aa 
 %x = x_all(1:149,11:13);
@@ -46,7 +46,7 @@ hold on
 markersize = 2;
 % Plot scatter points next to boxplot
 for i = 1:size(colours,2)
-    scatter(y(y(:,6)==i,3),y(y(:,6)==i,2),markersize,'filled',colours(i))
+    scatter(y(y(:,2)==i,3),y(y(:,2)==i,1),markersize,'filled',colours(i))
 end
 
 % Add ylabel and y axis limits
