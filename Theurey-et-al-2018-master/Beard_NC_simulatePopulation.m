@@ -66,7 +66,7 @@ if setRNG == 1
 end
 
 %%% Set number of simulations (= number of cells in population)
-numSims = 10;
+numSims = 30; %10; changed to 30 to obtain figure 1b
 printSim = 1;   % Set to 1 to output simulation numbers to screen
 fprintf('\n%i simulations', numSims)
 
@@ -89,13 +89,13 @@ fprintf('\nRunning expt %i', expt)
 % Set parameters to 1 for 100% condition, and to <1 to
 % simulate impairment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-v_xpar7 = 0.5; %1;%0.5;%0.42;%    % x_DH impairment 
-v_xpar9 = 9e-2;%1;%2e-1;%9e-2;%4.5e-2;%      % x_C1  
-v_xpar10 = 7.2e-2;%1;%1.2e-1;%7.2e-2;%5.2e-2;%     % x_C3
-v_xpar13 = 3.2e-3;%1;%6e-3;%3.2e-3%2.2e-3;%     % x_C4 impairment
-v_xpar15 = 6e-5;%1;%1e-4;%6e-5%4.2e-5;%    % x_F1 impairment
+v_xpar7 = 1; %1;%0.5;%0.42;%    % x_DH impairment 
+v_xpar9 = 1;%1;%2e-1;%9e-2;%4.5e-2;%      % x_C1  
+v_xpar10 = 1;%1;%1.2e-1;%7.2e-2;%5.2e-2;%     % x_C3
+v_xpar13 = 1;%1;%6e-3;%3.2e-3%2.2e-3;%     % x_C4 impairment
+v_xpar15 = 1;%1;%1e-4;%6e-5%4.2e-5;%    % x_F1 impairment
 v_xpar21 = 1;%1.5;%2.0;%     % x_Hle  
-v_otherpar4 = 0.3;%1;%0.3;%0.82;%  % K_ADTP_dyn impairment
+v_otherpar4 = 1;%1;%0.3;%0.82;%  % K_ADTP_dyn impairment
 v_otherpar6 = 1; % K_ADTP_cons (redundant)
 
 if v_xpar7 ~= 1, fprintf('Impairing x_DH [xpar(7)=%0.2i]\n',v_xpar7), end
@@ -134,6 +134,43 @@ fprintf('********************\n')
      t_prior,t_start,t_final,tt,stepsize,...
      options, xo_single_cell, plot_ss, statevar_legend, printSim);
 
+ %Convert OCR to experimental units
+% convert units first
+Output2Convert = OutputAll;
+dim = 1;
+[OCR_converted,Output27Conv,Output5Conv,...
+J_ATP_total,prop_cyto,prop_mito,convert] = unitsConvert(Output2Convert,dim);
+
+temp_OCRconv = squeeze(OCR_converted); %(Want timeseries for OCR data)
+basal_conv = temp_OCRconv(2/stepsize,:)';    
+drug1_conv = temp_OCRconv(30/stepsize,:)';    
+drug2_conv = temp_OCRconv(45/stepsize,:)';   
+temp_OCRconv = [basal_conv drug1_conv drug2_conv];
+
+% J_Hle
+tempJHle = squeeze(OutputAll(:,15,:));
+JHleb = tempJHle(2/stepsize,:)';
+JHled1 = tempJHle(30/stepsize,:)';
+JHled2 = tempJHle(45/stepsize,:)';
+tempJHle = [JHleb JHled1 JHled2];
+
+tempFCJHle = squeeze(OutputFCAll(:,15,:));
+JHleFCd1 = tempFCJHle(30/stepsize,:)';
+JHleFCd2 = tempFCJHle(45/stepsize,:)';
+tempFCJHle = [JHleFCd1 JHleFCd2];
+
+% J_F1
+tempJF1 = squeeze(OutputAll(:,5,:));
+JF1b = tempJF1(2/stepsize,:)';
+JF1d1 = tempJF1(30/stepsize,:)';
+JF1d2 = tempJF1(45/stepsize,:)';
+tempJF1 = [JF1b JF1d1 JF1d2];
+
+tempFCJF1 = squeeze(OutputFCAll(:,5,:));
+JF1FCd1 = tempFCJF1(30/stepsize,:)';
+JF1FCd2 = tempFCJF1(45/stepsize,:)';
+tempFCJF1 = [JF1FCd1 JF1FCd2];
+
 % Print again just to make sure you don't miss it!
 fprintf('\n********************')
 if v_xpar7 ~= 1, fprintf('\nImpairing x_DH [xpar(7)=%0.2i]\n',v_xpar7), end
@@ -151,6 +188,8 @@ if setRNG == 1
 end
 fprintf('\nRunning expt %i\n', expt)
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Plot timeseries of state variables & outputs
 %%% Only plots what you have chosen at beginning of file
@@ -160,6 +199,7 @@ plotTimeSeries(tt, stepsize, numSims,...
     plotStateVarFC, plotStateVarFC_Choice, stateVarFCAll,...
     plotOutput, plotOutput_Choice, OutputAll,...
     plotOutputFC, plotOutputFC_Choice, OutputFCAll)
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Output specific values at specific timepoints to obtain data for 
@@ -202,42 +242,7 @@ OCRFCd1 = tempFCOCR(30/stepsize,:)';
 OCRFCd2 = tempFCOCR(45/stepsize,:)';
 tempFCOCR = [OCRFCd1 OCRFCd2];
 
-% Convert OCR to experimental units
-% convert units first
-Output2Convert = OutputAll;
-dim = 1;
-[OCR_converted,Output27Conv,Output5Conv,...
-J_ATP_total,prop_cyto,prop_mito,convert] = unitsConvert(Output2Convert,dim);
-
-temp_OCRconv = squeeze(OCR_converted); %(Want timeseries for OCR data)
-basal_conv = temp_OCRconv(2/stepsize,:)';    
-drug1_conv = temp_OCRconv(30/stepsize,:)';    
-drug2_conv = temp_OCRconv(45/stepsize,:)';   
-temp_OCRconv = [basal_conv drug1_conv drug2_conv];
-
-% J_Hle
-tempJHle = squeeze(OutputAll(:,15,:));
-JHleb = tempJHle(2/stepsize,:)';
-JHled1 = tempJHle(30/stepsize,:)';
-JHled2 = tempJHle(45/stepsize,:)';
-tempJHle = [JHleb JHled1 JHled2];
-
-tempFCJHle = squeeze(OutputFCAll(:,15,:));
-JHleFCd1 = tempFCJHle(30/stepsize,:)';
-JHleFCd2 = tempFCJHle(45/stepsize,:)';
-tempFCJHle = [JHleFCd1 JHleFCd2];
-
-% J_F1
-tempJF1 = squeeze(OutputAll(:,5,:));
-JF1b = tempJF1(2/stepsize,:)';
-JF1d1 = tempJF1(30/stepsize,:)';
-JF1d2 = tempJF1(45/stepsize,:)';
-tempJF1 = [JF1b JF1d1 JF1d2];
-
-tempFCJF1 = squeeze(OutputFCAll(:,5,:));
-JF1FCd1 = tempFCJF1(30/stepsize,:)';
-JF1FCd2 = tempFCJF1(45/stepsize,:)';
-tempFCJF1 = [JF1FCd1 JF1FCd2];
+% 
 
 % Set breakpoint here if you want to extract specific information
 end
