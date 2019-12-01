@@ -117,8 +117,8 @@ ylabel('Mitochondrial pH')
 end
 
 % Plot think black lines at limits of literature values
-plot([1.1 1.2], [litMin litMin], 'k', 'LineWidth', 1)
-plot([1.1 1.2], [litMax litMax], 'k', 'LineWidth', 1)
+plot([1.1 1.2], [litMin litMin], 'k', 'LineWidth', 3)
+plot([1.1 1.2], [litMax litMax], 'k', 'LineWidth', 3)
 
 % Apply axes limits
 ylim([axesMin axesMax])

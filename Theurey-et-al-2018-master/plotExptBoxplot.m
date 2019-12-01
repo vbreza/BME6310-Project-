@@ -10,14 +10,15 @@ function plotExptBoxplot
 % Simulations generated using Beard_NC_simulatePopulation.m
 
 % Specify data variable
+
+x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
+%data = 'NADH_Rot';  
 %data = 'TMRM_Oligo';
 %data = 'TMRM_AA';
-%data = 'TMRM_Rot';
-x = xlsread('Pre-generated data (Fig 1C,2F).xlsx');
-data = 'NADH_Rot';   
+data = 'TMRM_Rot';
 
 % Position = figure dimensions for publication
-figure('Position', [100 100 120 130])
+figure('Position', [100 100 120 200])
 % Change default font type to Arial
 set(0,'defaultAxesFontName', 'Arial')
 set(0,'defaultTextFontName', 'Arial')
@@ -26,15 +27,21 @@ set(0,'defaultTextFontName', 'Arial')
 y = x;
 colours = ('rk');   % Plot expt data in red (changed in Figure to grey), sims in black 
 
-boxplot(y(:,1),y(:,2),'Color',colours,'Symbol','+')
+boxplot(y(:,6),y(:,7),'Color',colours,'Symbol','+')
 hold on
-markersize = 2;
+markersize = 6;
 % Plot scatter points next to boxplot
-for i = 1:size(colours,2)
-    scatter(y(y(:,2)==i,3),y(y(:,2)==i,1),markersize,'filled',colours(i))
-end
+disp('X')
 
-% Add ylabel and y axis limits
+scatter(1.3*ones(77, 1), y(1:77, 6),markersize,'filled',colours(1))
+scatter(2.3*ones(98, 1), y(78:175, 6),markersize,'filled',colours(2))
+% for i = 1:2
+%     scatter(y(y(:,7)==i,),y(y(:,7)==i,6),markersize,'filled',colours(i))
+% end
+% ylabel('\Delta\Psi_m response to AA (mV)')
+xlim([0.5 2.5])
+xticklabels({'CNs','Sims'})
+%Add ylabel and y axis limits
 if strcmp(data, 'TMRM_Rot')
     ylabel('\Delta\Psi_m response to Rot. (mV)')
     ylim([90 145])
@@ -43,20 +50,21 @@ elseif strcmp(data, 'TMRM_AA')
     ylim([90 145])
 elseif strcmp(data, 'NADH_Rot')
     ylabel('NAD(P)H response to Rot. (FC)')
-    %ylim([90 145])
+    ylim([90 145])
 elseif strcmp(data, 'TMRM_Oligo')
     ylabel('\Delta\Psi_m response to Oligo. (mV)')
-    ylim([90 170])
+    ylim([120 180])
 end
-
-% Set x axis limits
-xlim([0.5 2.5])
-
-% Set x-axis tick labels
-xticklabels({'CNs','Sims'})
-
+% 
+% % Set x axis limits
+% xlim([0.5 2.5])
+% 
+% % Set x-axis tick labels
+% xticklabels({'CNs','Sims'})
+% disp('X')
 % Remove box around plot
 box off
+disp(data)
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
