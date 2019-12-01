@@ -23,18 +23,18 @@ xpar(8) =  4.3;          % r_DH       % Input-flux: Initial disturbance of equil
 %*************************************************************************
 % FLUX 2: Parameter for complex I
 %*************************************************************************
-xpar(9) = 2.0400e+003;  %1.0200        % x_C1       % Complex I activity
+xpar(9) = 1.0200e+003;  %1.0200        % x_C1       % Complex I activity
 %*************************************************************************
 % FLUX 3: Parameter for complex III
 %*************************************************************************
-xpar(10) = 0.4482;    %0.2241          % x_C3      % Complex III activity
-xpar(11) = 0.384e-3;   %0.192e-3         % k_Pi3     % Complex III / Pi parameter
-xpar(12) = 50.62e-3;    %25.31e-3        % k_Pi4     % Complex III / Pi parameter
+xpar(10) = 0.2241;    %0.2241          % x_C3      % Complex III activity
+xpar(11) = 0.192e-3;   %0.192e-3         % k_Pi3     % Complex III / Pi parameter
+xpar(12) = 25.31e-3;    %25.31e-3        % k_Pi4     % Complex III / Pi parameter
 %*************************************************************************
 % FLUX 4: Parameter for complex IV
 %*************************************************************************
 xpar(13) = 3.2131e-004;  %3.2131e-004       % x_C4      % Complex IV activity
-xpar(14) = 2.4e-4;       %1.2e-4       % k_O2      % kinetic constant for complex IV (M)
+xpar(14) = 1.2e-4;       %1.2e-4       % k_O2      % kinetic constant for complex IV (M)
 %*************************************************************************
 % FLUX 5: Parameter for ATP synthase and Mg-binding to ATP/ADP
 %*************************************************************************
@@ -50,7 +50,7 @@ xpar(20) = 3.50e-6;             % k_mADP    % ANT Michaelis-Menten constant
 %*************************************************************************
 % FLUX 7: Proton leak activity
 %*************************************************************************
-xpar(21) = 75.0;      %150         % x_Hle     % Proton leak activity  
+xpar(21) = 150.0;      %150         % x_Hle     % Proton leak activity  
 %*************************************************************************
 % FLUX 8: Parameter for OM transporters
 %*************************************************************************
