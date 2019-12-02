@@ -142,19 +142,19 @@ if plotOutput == 1
     [OCR_converted,Output27Conv,Output5Conv,...
     J_ATP_total,prop_cyto,prop_mito,convert] = unitsConvert(OutputAll,dim);
 
-    subplot(3,3,2), hold on
+    hold on
     for i = 1:numSims
-        Output4Conv = OutputAll(:,4,i)*convert;
-        plot(tt(4:stepsize*600:end),Output4Conv(4:stepsize*600:end)); 
+        Output4Conv = OutputAll(:,4,i)*convert * 1e12; %change to pmol
+        plot(tt(4:stepsize*600:end),Output4Conv(4:stepsize*600:end));%, 'Color', [0.75 0.75 0.75]); 
     end
     if meanOutputFC == 0
     else
-        meanOutput4Conv = meanOutput(:,4)*convert;
-        plot(tt(4:stepsize*600:end),meanOutput4Conv(4:stepsize*600:end),'k','LineWidth',2);
+        meanOutput4Conv = meanOutput(:,4)*convert * 1e12; %change to pmol
+        plot(tt(4:stepsize*600:end),meanOutput4Conv(4:stepsize*600:end),'LineWidth',2);
     end
-    axis([0 60 0 20e-12])
+    axis([0 60 0 30])
     xlabel('Time (min)')
-    ylabel('J_C4: OCR (mol O_2/min/ug protein)')
+    ylabel('OCR (pmol O_2/min/ug protein)')
 %     
 %     subplot(3,3,5), hold on
 %     for i = 1:numSims

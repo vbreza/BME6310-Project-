@@ -66,7 +66,7 @@ if setRNG == 1
 end
 
 %%% Set number of simulations (= number of cells in population)
-numSims = 30; %10; changed to 30 to obtain figure 1b
+numSims = 10; %10; changed to 30 to obtain figure 1b
 printSim = 1;   % Set to 1 to output simulation numbers to screen
 fprintf('\n%i simulations', numSims)
 
