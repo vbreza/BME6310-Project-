@@ -40,6 +40,7 @@ Ctot0       = xpar(2);           % Cyt-c from Beard. Total IMS Cyt-c, Cred+Cox, 
 Qtot0       = xpar(3);           % total IMS Ubiquinol, Q+QH2, molar
 ADTP_tot    = xpar(4);           % total Adenosine phosphates in cytosol, calculated from Evans_77
 
+
 %%% Basal Respiratory State
 state_fact  = 10/11; 
 ATP_e       = state_fact*ADTP_tot;  % ATP level
@@ -66,7 +67,7 @@ if setRNG == 1
 end
 
 %%% Set number of simulations (= number of cells in population)
-numSims = 30; %10; changed to 30 to obtain figure 1b
+numSims = 10; %10; change to 30 to obtain figure 1b
 printSim = 1;   % Set to 1 to output simulation numbers to screen
 fprintf('\n%i simulations', numSims)
 
@@ -206,41 +207,41 @@ plotTimeSeries(tt, stepsize, numSims,...
 %%% Theurey et al Fig 2D and 4A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TMRM
-tempTMRM = squeeze(OutputAll(:,13,:));    % \Delta\Psi_m
-TMRMb = tempTMRM(2/stepsize,:)';    % Baseline
-TMRMd1 = tempTMRM(30/stepsize,:)';    % After 1st drug addition
-TMRMd2 = tempTMRM(45/stepsize,:)';   % After 2nd drug addition
-tempTMRM = [TMRMb TMRMd1 TMRMd2];
-
-tempFCTMRM = squeeze(OutputFCAll(:,13,:));  % Foldchange
-TMRMFCd1 = tempFCTMRM(30/stepsize,:)';
-TMRMFCd2 = tempFCTMRM(45/stepsize,:)';
-tempFCTMRM = [TMRMFCd1 TMRMFCd2];
-
-% NADH
-tempNADH = squeeze(stateVarAll(:,4,:)); % NADH
-NADHb = tempNADH(2/stepsize,:)';
-NADHd1 = tempNADH(30/stepsize,:)';
-NADHd2 = tempNADH(45/stepsize,:)';
-tempNADH = [NADHb NADHd1 NADHd2];
-
-tempFCNADH = squeeze(stateVarFCAll(:,4,:));
-NADHFCd1 = tempFCNADH(30/stepsize,:)';
-NADHFCd2 = tempFCNADH(45/stepsize,:)';
-tempFCNADH = [NADHFCd1 NADHFCd2];
-
-% OCR
-tempOCR = squeeze(OutputAll(:,4,:));   % OCR (raw units)
-OCRb = tempOCR(2/stepsize,:)';
-OCRd1 = tempOCR(30/stepsize,:)';
-OCRd2 = tempOCR(45/stepsize,:)';
-tempOCR = [OCRb OCRd1 OCRd2];
-
-tempFCOCR  = squeeze(OutputFCAll(:,4,:));
-OCRFCd1 = tempFCOCR(30/stepsize,:)';
-OCRFCd2 = tempFCOCR(45/stepsize,:)';
-tempFCOCR = [OCRFCd1 OCRFCd2];
+% % TMRM
+% tempTMRM = squeeze(OutputAll(:,13,:));    % \Delta\Psi_m
+% TMRMb = tempTMRM(2/stepsize,:)';    % Baseline
+% TMRMd1 = tempTMRM(30/stepsize,:)';    % After 1st drug addition
+% TMRMd2 = tempTMRM(45/stepsize,:)';   % After 2nd drug addition
+% tempTMRM = [TMRMb TMRMd1 TMRMd2];
+% 
+% tempFCTMRM = squeeze(OutputFCAll(:,13,:));  % Foldchange
+% TMRMFCd1 = tempFCTMRM(30/stepsize,:)';
+% TMRMFCd2 = tempFCTMRM(45/stepsize,:)';
+% tempFCTMRM = [TMRMFCd1 TMRMFCd2];
+% 
+% % NADH
+% tempNADH = squeeze(stateVarAll(:,4,:)); % NADH
+% NADHb = tempNADH(2/stepsize,:)';
+% NADHd1 = tempNADH(30/stepsize,:)';
+% NADHd2 = tempNADH(45/stepsize,:)';
+% tempNADH = [NADHb NADHd1 NADHd2];
+% 
+% tempFCNADH = squeeze(stateVarFCAll(:,4,:));
+% NADHFCd1 = tempFCNADH(30/stepsize,:)';
+% NADHFCd2 = tempFCNADH(45/stepsize,:)';
+% tempFCNADH = [NADHFCd1 NADHFCd2];
+% 
+% % OCR
+% tempOCR = squeeze(OutputAll(:,4,:));   % OCR (raw units)
+% OCRb = tempOCR(2/stepsize,:)';
+% OCRd1 = tempOCR(30/stepsize,:)';
+% OCRd2 = tempOCR(45/stepsize,:)';
+% tempOCR = [OCRb OCRd1 OCRd2];
+% 
+% tempFCOCR  = squeeze(OutputFCAll(:,4,:));
+% OCRFCd1 = tempFCOCR(30/stepsize,:)';
+% OCRFCd2 = tempFCOCR(45/stepsize,:)';
+% tempFCOCR = [OCRFCd1 OCRFCd2];
 
 % 
 
