@@ -152,9 +152,12 @@ if plotOutput == 1
         meanOutput4Conv = meanOutput(:,4)*convert * 1e12; %change to pmol
         plot(tt(4:stepsize*600:end),meanOutput4Conv(4:stepsize*600:end),'LineWidth',2);
     end
+
     axis([0 60 0 30])
+
     xlabel('Time (min)')
     ylabel('OCR (pmol O_2/min/ug protein)')
+
 %     
 %     subplot(3,3,5), hold on
 %     for i = 1:numSims
